@@ -23,8 +23,56 @@ Este projeto implementa um pipeline de dados moderno e serverless na AWS, desenh
 
 ```mermaid
 graph TD;
-    subgraph "Fase 1: Coleta";
-        A[<B>API do X/Twitter</B><br>Fonte de Dados Brutos];
+    subgraph "Fase 1: Coleta"
+        A["**API do X/Twitter**<br>Fonte de Dados Brutos"];
     end
-    subgraph "Fase 2: Armazenamento (Data Lake)";
-        B[<B
+    subgraph "Fase 2: Armazenamento (Data Lake)"
+        B["**AWS S3 Bucket**<br>Repositório de JSONs brutos<br>com particionamento"];
+    end
+    subgraph "Fase 3: Processamento ETL"
+        C{"**AWS Glue Job**<br>Script PySpark para<br>limpeza e análise de sentimento"};
+    end
+    subgraph "Fase 4: Armazenamento Otimizado"
+        D["**AWS S3 Bucket**<br>Dados enriquecidos<br>em formato Parquet"];
+    end
+    subgraph "Fase 5: Visualização"
+        E["**Dashboard Streamlit**<br>Interface interativa<br>com gráficos e tabelas"];
+    end
+
+    A --> B;
+    B --> C;
+    C --> D;
+    D --> E;
+```
+
+---
+
+## ✨ Features de Destaque
+
+* **Arquitetura Serverless e Custo-Efetiva:** Utiliza serviços gerenciados da AWS (S3, Glue, IAM) para criar um pipeline que escala sob demanda e minimiza custos operacionais e de infraestrutura.
+* **Processamento Distribuído com PySpark:** O coração do ETL usa o poder do Apache Spark para processar grandes volumes de dados de forma paralela e eficiente, aplicando a análise de sentimento com a biblioteca `TextBlob`.
+* **Armazenamento Otimizado para Analytics:** Os dados brutos são salvos em JSON, e os dados processados e enriquecidos são armazenados no formato colunar **Parquet**, drasticamente otimizado para consultas analíticas rápidas.
+* **Dashboard Interativo e Data-Driven:** A interface, construída com Streamlit, lê os dados processados diretamente do S3 e apresenta os insights de forma clara, permitindo que a área de negócio consuma a informação sem precisar de conhecimento técnico.
+
+---
+
+## 🛠️ Stack de Tecnologias
+
+| Categoria | Tecnologia | Propósito |
+| :--- | :--- | :--- |
+| **Linguagem** | `Python` | Linguagem principal para scripts de coleta e processamento. |
+| **Coleta** | `Tweepy` | Biblioteca para interação com a API do X/Twitter. |
+| **Cloud (AWS)** | `S3`, `Glue`, `IAM` | Data Lake, serviço de ETL serverless e gerenciamento de permissões. |
+| **Big Data** | `PySpark` | Processamento de dados em larga escala no AWS Glue. |
+| **Análise de Sentimento** | `TextBlob` | Biblioteca para análise de Processamento de Linguagem Natural (PLN). |
+| **Visualização** | `Streamlit`, `Plotly` | Construção do dashboard interativo e dos gráficos. |
+| **Ferramentas** | `Git`, `Docker` | Controle de versão e conteinerização. |
+
+---
+
+## 👨‍💻 Autor
+
+Desenvolvido por **Carlos Henrique Dias Dos Santos**.
+
+* **LinkedIn:** [linkedin.com/in/carlos-henrique-2a0008378](https://linkedin.com/in/carlos-henrique-2a0008378)
+* **GitHub:** [@henrique999930-1gtm](https://github.com/henrique999930-1gtm)
