@@ -1,26 +1,30 @@
 # 🌡️ Projeto: Termômetro de Sentimento da Web
 
-## Visão Geral
-Este projeto implementa um pipeline de dados ponta a ponta na nuvem AWS que captura tweets sobre "Inteligência Artificial", analisa o sentimento de cada um (Positivo, Negativo ou Neutro), e exibe os resultados em um dashboard interativo.
+### **Uma solução de Engenharia de Dados ponta-a-ponta na nuvem AWS, que transforma o fluxo caótico de dados do Twitter em inteligência de mercado acionável e em tempo real.**
 
-## Arquitetura do Pipeline
-O fluxo de dados segue as melhores práticas de engenharia de dados moderna:
+---
 
-1.  **Coleta (Ingestão):** Um script Python (`ingestor.py`) utiliza a biblioteca Tweepy para buscar dados da API do X/Twitter em batch.
-2.  **Armazenamento (Data Lake):** Os dados brutos são salvos em formato JSON em um Data Lake no AWS S3, com armazenamento particionado por data (ano/mes/dia/hora) para otimizar futuras consultas.
-3.  **Processamento (ETL):** Um Job no AWS Glue executa um script PySpark que lê os dados brutos, aplica uma função de análise de sentimento com a biblioteca TextBlob, e salva os dados enriquecidos de volta no S3 em formato Parquet.
-4.  **Visualização (Dashboard):** Uma aplicação web desenvolvida com Streamlit (`dashboard.py`) lê os dados processados do S3 e exibe os insights em gráficos e tabelas interativas.
+<p align="center">
+  <img src="https://img.shields.io/badge/Python-3.9%2B-3776AB?style=for-the-badge&logo=python" alt="Python">
+  <img src="https://img.shields.io/badge/Amazon%20AWS-Cloud%20Native-232F3E?style=for-the-badge&logo=amazon-aws" alt="AWS">
+  <img src="https://img.shields.io/badge/Apache%20Spark-PySpark-E25A1C?style=for-the-badge&logo=apache-spark" alt="PySpark">
+  <img src="https://img.shields.io/badge/Streamlit-Interactive%20Dashboard-FF4B4B?style=for-the-badge&logo=streamlit" alt="Streamlit">
+</p>
 
-## Stack de Tecnologias
-* **Linguagem:** Python
-* **Coleta:** Tweepy
-* **Nuvem (Cloud):** AWS (S3, Glue, IAM)
-* **Processamento de Big Data:** PySpark
-* **Análise de Sentimento:** TextBlob
-* **Dashboard (Visualização):** Streamlit, Pandas, Plotly
+---
 
-## Como Executar
-1.  Configurar credenciais da AWS e do Twitter como variáveis de ambiente.
-2.  Executar `ingestor.py` para coletar e armazenar os dados.
-3.  Executar o Job do AWS Glue para processar os dados.
-4.  Executar `streamlit run dashboard.py` para visualizar os resultados.
+## 🎯 O Desafio de Negócio
+
+No cenário digital atual, a opinião pública nas redes sociais é um ativo de valor inestimável, mas volátil e massivo. Empresas que conseguem capturar e analisar esse sentimento em tempo real ganham uma vantagem competitiva absurda. O desafio é: como construir um sistema escalável, automatizado e custo-efetivo para transformar milhões de tweets em insights claros e objetivos?
+
+## 🏛️ Arquitetura da Solução
+
+Este projeto implementa um pipeline de dados moderno e serverless na AWS, desenhado para máxima eficiência e escalabilidade. Cada etapa do fluxo foi construída com as melhores práticas de engenharia de dados, conforme ilustrado abaixo.
+
+```mermaid
+graph TD;
+    subgraph "Fase 1: Coleta";
+        A[<B>API do X/Twitter</B><br>Fonte de Dados Brutos];
+    end
+    subgraph "Fase 2: Armazenamento (Data Lake)";
+        B[<B
